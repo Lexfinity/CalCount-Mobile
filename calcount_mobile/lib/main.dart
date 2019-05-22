@@ -1,4 +1,4 @@
-import 'package:calcount_mobile/loginButton.dart';
+import 'package:calcount_mobile/signup_page.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -21,6 +21,9 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.red,
       ),
+      routes: <String, WidgetBuilder>{
+        '/signup': (BuildContext context) => new SignupPage()
+      },
       home: MyHomePage(title: 'CalCount Login'),
     );
   }
@@ -91,7 +94,9 @@ class _MyHomePageState extends State<MyHomePage> {
       elevation: 0,
       //color: ccColor,
       child: MaterialButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.of(context).pushNamed('/signup');
+      },
       child: Text("Register",
       textAlign: TextAlign.center,
       style: style.copyWith(
@@ -108,6 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
               color: Colors.white,
               child: Padding(
                 padding: const EdgeInsets.all(36.0),
+                child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -135,6 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       height: 5.0,
                     )
                   ],
+                ),
                 ),
               ),
             ),
