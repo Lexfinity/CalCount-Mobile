@@ -1,6 +1,9 @@
 import 'package:calcount_mobile/signup_page.dart';
 import 'package:flutter/material.dart';
 
+import 'bodyInfoPage.dart';
+import 'main_page.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -22,7 +25,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.red,
       ),
       routes: <String, WidgetBuilder>{
-        '/signup': (BuildContext context) => new SignupPage()
+        '/signup': (BuildContext context) => new SignupPage(),
+        '/loggedIn': (BuildContext context) => new MainPage(),
+        '/bodyInfo': (BuildContext context) => new BodyInfoPage(),
+        '/homePage': (BuildContext context) => new MainPage(),
       },
       home: MyHomePage(title: 'CalCount Login'),
     );
@@ -53,12 +59,12 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
 
-    final emailField = TextField(
+    final usernameField = TextField(
       obscureText: false,
       style: style,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        hintText: "Email",
+        hintText: "Username",
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)))
       );
     
@@ -90,14 +96,27 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
 
-    final registerButton = Material(
-      elevation: 0,
+    final registerButton = FlatButton(
       //color: ccColor,
       child: MaterialButton(
       onPressed: () {
         Navigator.of(context).pushNamed('/signup');
       },
       child: Text("Register",
+      textAlign: TextAlign.center,
+      style: style.copyWith(
+        color: ccColor,
+        fontWeight: FontWeight.bold))
+      ),
+    );
+
+    final skipButton = Material (
+    elevation: 0,
+    child: MaterialButton(
+      onPressed: (){
+        Navigator.of(context).pushNamed('/loggedIn');
+      },
+      child: Text("Skip",
       textAlign: TextAlign.center,
       style: style.copyWith(
         color: ccColor,
@@ -126,7 +145,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                     SizedBox(height: 45.0),
-                    emailField,
+                    usernameField,
                     SizedBox(height: 25.0),
                     passwordField,
                     SizedBox(
@@ -139,6 +158,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     registerButton,
                     SizedBox(
                       height: 5.0,
+                    ),
+                    skipButton,
+                    SizedBox(height: 5.0,
                     )
                   ],
                 ),
