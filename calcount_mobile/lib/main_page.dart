@@ -1,4 +1,5 @@
 import 'package:calcount_mobile/main.dart';
+import 'package:calcount_mobile/settingsView.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -12,11 +13,12 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  int selectedPage = 0;
+  int selectedPage = 1;
   final pageOptions = [
     Text('Item 1'),
     Text('Item 2'),
-    Text('Item 3'),
+    settingsView(),
+    //Text('Item 3'),
   ];
 
   final Color ccColor = const Color(0xFFFF6C6C);

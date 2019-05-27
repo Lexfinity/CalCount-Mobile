@@ -88,20 +88,60 @@ class _bodyInfoPageState extends State<BodyInfoPage> {
             child: Container(
               color: Colors.white,
               child: Padding(
-                padding: const EdgeInsets.all(55.0),
+                padding: const EdgeInsets.all(30.0),
                 child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    ageField,
+                    Row(children: <Widget>[
+                      Flexible(
+                        flex: 2,
+                        child: Container(child: ageField,),
+                        //SizedBox(height: 25.0),
+                      ),
+                      Flexible(
+                        flex: 1,
+                        child: Container(
+                        child: new Text('Years', style: style,),
+                        padding: EdgeInsets.all(23.0),),
+                        
+                      ),
+                    ],),
+                    //ageField,
                     SizedBox(height: 25.0),
-                    weightField,
+                    Row(children: <Widget>[
+                      Flexible(
+                        flex: 2,
+                        child: Container(child: weightField,),
+                        //SizedBox(height: 25.0),
+                      ),
+                      Flexible(
+                        flex: 1,
+                        child: Container(
+                        child: new Text('Kilograms', style: style,),
+                        padding: EdgeInsets.all(10.0),),
+                        
+                      ),
+                    ],),
+                    //weightField,
                     SizedBox(height: 25.0),
-                    heightField,
-                    SizedBox(
-                      height: 35.0,
-                    ),
+                    Row(children: <Widget>[
+                      Flexible(
+                        flex: 2,
+                        child: Container(child: heightField,),
+                        //SizedBox(height: 25.0),
+                      ),
+                      Flexible(
+                        flex: 1,
+                        child: Container(
+                        child: new Text('Meters', style: style,),
+                        padding: EdgeInsets.all(19.0),),
+                        
+                      ),
+                    ],),
+                    //heightField,
+                    SizedBox(height: 25.0,),
                      Row(
                        children: <Widget>[
                           new Radio(
@@ -126,11 +166,12 @@ class _bodyInfoPageState extends State<BodyInfoPage> {
                     ),
                        ],
                      ),
-                    
+                    SizedBox(height: 5.0,),
                     new Text(
                       'How Active Are You?',
                       style: style,
                     ),
+                    SizedBox(height: 5.0,),
 
                     Row(
                       children: <Widget>[
@@ -155,7 +196,6 @@ class _bodyInfoPageState extends State<BodyInfoPage> {
                       style: style,
                     ),
                     ],),
-
                     Row( children: <Widget>[
                     new Radio(
                         onChanged: (e) => selectPA(e),
@@ -179,8 +219,9 @@ class _bodyInfoPageState extends State<BodyInfoPage> {
                       style: style,
                     ),
                     ],),
-                    SaveButton,
                     SizedBox(height: 15.0),
+                    SaveButton,
+                    
                     ],
                 ),
                 ),
