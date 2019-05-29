@@ -3,59 +3,54 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class BodyInfoPage extends StatefulWidget {
-
   TextStyle style = TextStyle(fontFamily: "Montserrat", fontSize: 20.0);
   final Color ccColor = const Color(0xFFFF6C6C);
-  
-@override
-  _bodyInfoPageState createState() => _bodyInfoPageState();
 
+  @override
+  _bodyInfoPageState createState() => _bodyInfoPageState();
 }
 
 class _bodyInfoPageState extends State<BodyInfoPage> {
   String groupVal;
   final Color ccColor = const Color(0xFFFF6C6C);
-  TextStyle style = TextStyle(fontFamily: "Montserrat", fontSize: 20.0, color: const Color(0xFFFF6C6C));
-  
+  TextStyle style = TextStyle(
+      fontFamily: "Montserrat", fontSize: 20.0, color: const Color(0xFFFF6C6C));
+
   int physActVal;
-
-  
-
 
   @override
   Widget build(BuildContext context) {
+    final ageField = TextField(
+        obscureText: false,
+        style: style,
+        decoration: InputDecoration(
+            contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+            hintText: "Age",
+            //labelText: "Age",
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))));
 
-      final ageField = TextField(
-      obscureText: false,
-      style: style,
-      decoration: InputDecoration(
-        contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        hintText: "Age",
-        //labelText: "Age",
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)))
-      );
+    final weightField = TextField(
+        obscureText: false,
+        style: style,
+        decoration: InputDecoration(
+            contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+            hintText: "Weight",
+            //labelText: "Weight",
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))));
 
-      final weightField = TextField(
-      obscureText: false,
-      style: style,
-      decoration: InputDecoration(
-        contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        hintText: "Weight",
-        //labelText: "Weight",
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)))
-      );
+    final heightField = TextField(
+        obscureText: false,
+        style: style,
+        decoration: InputDecoration(
+            contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+            hintText: "Height",
+            //labelText: "Height",
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))));
 
-      final heightField = TextField(
-      obscureText: false,
-      style: style,
-      decoration: InputDecoration(
-        contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        hintText: "Height",
-        //labelText: "Height",
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)))
-      );
-
-      final SaveButton = Material(
+    final SaveButton = Material(
       elevation: 1.0,
       borderRadius: BorderRadius.circular(30.0),
       color: ccColor,
@@ -66,198 +61,232 @@ class _bodyInfoPageState extends State<BodyInfoPage> {
           Navigator.of(context).pushNamed('/homePage');
         },
         child: Text("Save",
-        textAlign: TextAlign.center,
-         style: style.copyWith(
-         color: Colors.white, fontWeight: FontWeight.bold)
-          ),
+            textAlign: TextAlign.center,
+            style: style.copyWith(
+                color: Colors.white, fontWeight: FontWeight.bold)),
       ),
     );
-      
-  
-  
-  
-
-
 
     return new Scaffold(
-       appBar: new AppBar(
+      appBar: new AppBar(
         title: new Text("Body Info"),
         backgroundColor: ccColor,
       ),
-       body: Center(
-            child: Container(
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(30.0),
-                child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Row(children: <Widget>[
+      body: Center(
+        child: Container(
+          color: Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.all(30.0),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
                       Flexible(
                         flex: 2,
-                        child: Container(child: ageField,),
+                        child: Container(
+                          child: ageField,
+                        ),
                         //SizedBox(height: 25.0),
                       ),
                       Flexible(
                         flex: 1,
                         child: Container(
-                        child: new Text('Years', style: style,),
-                        padding: EdgeInsets.all(23.0),),
-                        
+                          child: new Text(
+                            'Years',
+                            style: style,
+                          ),
+                          padding: EdgeInsets.all(23.0),
+                        ),
                       ),
-                    ],),
-                    //ageField,
-                    SizedBox(height: 25.0),
-                    Row(children: <Widget>[
+                    ],
+                  ),
+                  //ageField,
+                  SizedBox(height: 25.0),
+                  Row(
+                    children: <Widget>[
                       Flexible(
                         flex: 2,
-                        child: Container(child: weightField,),
+                        child: Container(
+                          child: weightField,
+                        ),
                         //SizedBox(height: 25.0),
                       ),
                       Flexible(
                         flex: 1,
                         child: Container(
-                        child: new Text('Kilograms', style: style,),
-                        padding: EdgeInsets.all(10.0),),
-                        
+                          child: new Text(
+                            'Kilograms',
+                            style: style,
+                          ),
+                          padding: EdgeInsets.all(10.0),
+                        ),
                       ),
-                    ],),
-                    //weightField,
-                    SizedBox(height: 25.0),
-                    Row(children: <Widget>[
+                    ],
+                  ),
+                  //weightField,
+                  SizedBox(height: 25.0),
+                  Row(
+                    children: <Widget>[
                       Flexible(
                         flex: 2,
-                        child: Container(child: heightField,),
+                        child: Container(
+                          child: heightField,
+                        ),
                         //SizedBox(height: 25.0),
                       ),
                       Flexible(
                         flex: 1,
                         child: Container(
-                        child: new Text('Meters', style: style,),
-                        padding: EdgeInsets.all(19.0),),
-                        
+                          child: new Text(
+                            'Meters',
+                            style: style,
+                          ),
+                          padding: EdgeInsets.all(19.0),
+                        ),
                       ),
-                    ],),
-                    //heightField,
-                    SizedBox(height: 25.0,),
-                     Row(
-                       children: <Widget>[
-                          new Radio(
-                          onChanged: (e) => selectSex(e),
-                          activeColor: ccColor,
-                          value: "M",
-                          groupValue: groupVal,
-                    ),
-                    new Text(
-                      'Male',
-                      style: style,
-                    ),
-                    new Radio(
-                          onChanged: (e) => selectSex(e),
-                          activeColor: ccColor,
-                          value: "F",
-                          groupValue: groupVal,
-                    ),
-                    new Text(
-                      'Female',
-                      style: style,
-                    ),
-                       ],
-                     ),
-                    SizedBox(height: 5.0,),
-                    new Text(
-                      'How Active Are You?',
-                      style: style,
-                    ),
-                    SizedBox(height: 5.0,),
+                    ],
+                  ),
+                  //heightField,
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      new Radio(
+                        onChanged: (e) => selectSex(e),
+                        activeColor: ccColor,
+                        value: "M",
+                        groupValue: groupVal,
+                      ),
+                      new Text(
+                        'Male',
+                        style: style,
+                      ),]),
 
                     Row(
-                      children: <Widget>[
-                    new Radio(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      new Radio(
+                        onChanged: (e) => selectSex(e),
+                        activeColor: ccColor,
+                        value: "F",
+                        groupValue: groupVal,
+                      ),
+                      new Text(
+                        'Female',
+                        style: style,
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  new Text(
+                    'How Active Are You?',
+                    style: style,
+                    textAlign: TextAlign.left,
+                  ),
+                  SizedBox(
+                    height: .0,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Radio(
                         onChanged: (e) => selectPA(e),
                         activeColor: ccColor,
                         value: 0,
                         groupValue: physActVal,
-                    ),
-                     new Text(
-                      'Sedentary',
-                      style: style,
-                    ),
-                    new Radio(
-                        onChanged: (e) => selectPA(e),
-                        activeColor: ccColor,
-                        value: 1,
-                        groupValue: physActVal,
-                    ),
-                     new Text(
-                      'Low Active',
-                      style: style,
-                    ),
-                    ],),
-                    Row( children: <Widget>[
-                    new Radio(
-                        onChanged: (e) => selectPA(e),
-                        activeColor: ccColor,
-                        value: 2,
-                        groupValue: physActVal,
-                    ),
-                     new Text(
-                      'Active',
-                      style: style,
-                    ),
+                      ),
+                      Text(
+                        'Sedentary',
+                        style: style,
+                      )
+                    ],
+                  ),
 
-                    new Radio(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Radio(
+                        onChanged: (e) => selectPA(e),
+                        activeColor: ccColor,
+                        value: 0,
+                        groupValue: physActVal,
+                      ),
+                      Text(
+                        'Low Active',
+                        style: style,
+                      )
+                    ],
+                  ),
+
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        new Radio(
+                          onChanged: (e) => selectPA(e),
+                          activeColor: ccColor,
+                          value: 2,
+                          groupValue: physActVal,
+                        ),
+                        new Text(
+                          'Active',
+                          style: style,
+                        ),
+                      ]),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      new Radio(
                         onChanged: (e) => selectPA(e),
                         activeColor: ccColor,
                         value: 3,
                         groupValue: physActVal,
-                    ),
-                     new Text(
-                      'Very Active',
-                      style: style,
-                    ),
-                    ],),
-                    SizedBox(height: 15.0),
-                    SaveButton,
-                    
+                      ),
+                      new Text(
+                        'Very Active',
+                        style: style,
+                      ),
                     ],
-                ),
-                ),
+                  ),
+                  SizedBox(height: 15.0),
+                  SaveButton,
+                ],
               ),
             ),
           ),
-      );
+        ),
+      ),
+    );
   }
 
   void selectSex(String e) {
     setState(() {
-     if(e == "M") {
-       groupVal = "M";
-     } else if (e == "F") {
-       groupVal = "F";
-     }
-    } 
-    );
+      if (e == "M") {
+        groupVal = "M";
+      } else if (e == "F") {
+        groupVal = "F";
+      }
+    });
   }
 
-  
   void selectPA(int e) {
     setState(() {
-     if(e == 0) {
-       physActVal = 0;
-     } else if (e == 1) {
-       physActVal = 1;
-     }  else if (e == 2) {
-       physActVal = 2;
-     }  else if (e == 3) {
-       physActVal = 3;
-     }
-    } 
-    );
+      if (e == 0) {
+        physActVal = 0;
+      } else if (e == 1) {
+        physActVal = 1;
+      } else if (e == 2) {
+        physActVal = 2;
+      } else if (e == 3) {
+        physActVal = 3;
+      }
+    });
   }
-
-
-
 }

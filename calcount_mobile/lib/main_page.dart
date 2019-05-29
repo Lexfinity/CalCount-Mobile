@@ -1,7 +1,10 @@
+import 'package:calcount_mobile/homeView.dart';
 import 'package:calcount_mobile/main.dart';
-import 'package:calcount_mobile/settingsView.dart';
+import 'package:calcount_mobile/historyView.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import 'bodyInfoView.dart';
 
 class MainPage extends StatefulWidget {
   TextStyle style = TextStyle(fontFamily: "Montserrat", fontSize: 20.0);
@@ -15,9 +18,9 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int selectedPage = 1;
   final pageOptions = [
-    Text('Item 1'),
-    Text('Item 2'),
-    settingsView(),
+    bodyInfoView(),
+    homeView(),
+    historyView(),
     //Text('Item 3'),
   ];
 
@@ -29,10 +32,10 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     
     return new Scaffold(
-      appBar: new AppBar(
-        title: new Text("Your CalCount"),
-        backgroundColor: ccColor,
-      ),
+      // appBar: new AppBar(
+      //   title: new Text("Your CalCount"),
+      //   backgroundColor: ccColor,
+      // ),
       body: pageOptions[selectedPage],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedPage,
@@ -52,8 +55,8 @@ class _MainPageState extends State<MainPage> {
             title: Text('Home')
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            title: Text('Settings')
+            icon: Icon(Icons.history),
+            title: Text('History')
           ),
         ],
       ),
