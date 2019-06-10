@@ -1,6 +1,10 @@
 import 'package:calcount_mobile/main.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'dart:async';
+import 'dart:convert' as convert;
+import 'package:http/http.dart' as http;
+
 
 class BodyInfoPage extends StatefulWidget {
   TextStyle style = TextStyle(fontFamily: "Montserrat", fontSize: 20.0);
@@ -16,7 +20,32 @@ class _bodyInfoPageState extends State<BodyInfoPage> {
   TextStyle style = TextStyle(
       fontFamily: "Montserrat", fontSize: 20.0, color: const Color(0xFFFF6C6C));
 
-  int physActVal;
+  var physActVal;
+  var username;
+  var age;
+  var weight;
+  var height;
+  var sex;
+
+  Future<String> updateBodyInfo(String username, int age, String sex, double weight, double height, int physActVal) async {
+  //  var url = "http://localhost:8080/users/create/" + username +"/"+ firstName +"/" + lastName + "/"+ email + "/" + password;
+   
+     //var uri = createHttpClient();
+      var uri = Uri.http('10.0.2.2:8080','/users/bodyInfo/$username/$age/$sex/$weight/$height/$physActVal');
+
+    //var response = await http.get(Uri.encodeFull(url), headers:{"Accept" : "application/json"});
+    //Navigator.of(context).pushNamed('/bodyInfo');
+    var response = await http.post(uri);
+     if (response.statusCode < 400) {
+    var loginData = convert.jsonDecode(response.body);
+    print(loginData);
+    Navigator.of(context).pushNamed('/homePage');
+     }
+     else {
+       print('error');
+
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +57,11 @@ class _bodyInfoPageState extends State<BodyInfoPage> {
             hintText: "Age",
             //labelText: "Age",
             border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))));
+                OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+                 onChanged: (String str) {
+                    age = int.parse(str);
+                  },
+                );
 
     final weightField = TextField(
         obscureText: false,
@@ -38,7 +71,11 @@ class _bodyInfoPageState extends State<BodyInfoPage> {
             hintText: "Weight",
             //labelText: "Weight",
             border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))));
+                OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+                 onChanged: (String str) {
+                    weight = double.parse(str);
+                  }
+                );
 
     final heightField = TextField(
         obscureText: false,
@@ -48,7 +85,11 @@ class _bodyInfoPageState extends State<BodyInfoPage> {
             hintText: "Height",
             //labelText: "Height",
             border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))));
+                OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+                onChanged: (String str) {
+                    height = double.parse(str);
+                  }
+                );
 
     final SaveButton = Material(
       elevation: 1.0,
@@ -58,7 +99,9 @@ class _bodyInfoPageState extends State<BodyInfoPage> {
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: () {
-          Navigator.of(context).pushNamed('/homePage');
+          //Navigator.of(context).pushNamed('/homePage');
+          updateBodyInfo(username, age, sex, weight, height, physActVal);
+
         },
         child: Text("Save",
             textAlign: TextAlign.center,
@@ -160,7 +203,7 @@ class _bodyInfoPageState extends State<BodyInfoPage> {
                         onChanged: (e) => selectSex(e),
                         activeColor: ccColor,
                         value: "M",
-                        groupValue: groupVal,
+                        groupValue: sex,
                       ),
                       new Text(
                         'Male',
@@ -174,7 +217,7 @@ class _bodyInfoPageState extends State<BodyInfoPage> {
                         onChanged: (e) => selectSex(e),
                         activeColor: ccColor,
                         value: "F",
-                        groupValue: groupVal,
+                        groupValue: sex,
                       ),
                       new Text(
                         'Female',
@@ -215,7 +258,7 @@ class _bodyInfoPageState extends State<BodyInfoPage> {
                       Radio(
                         onChanged: (e) => selectPA(e),
                         activeColor: ccColor,
-                        value: 0,
+                        value: 1,
                         groupValue: physActVal,
                       ),
                       Text(
@@ -269,9 +312,9 @@ class _bodyInfoPageState extends State<BodyInfoPage> {
   void selectSex(String e) {
     setState(() {
       if (e == "M") {
-        groupVal = "M";
+        sex = "M";
       } else if (e == "F") {
-        groupVal = "F";
+        sex = "F";
       }
     });
   }

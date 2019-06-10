@@ -30,7 +30,7 @@ class bodyInfoView extends StatelessWidget {
         body: Container(
           child: Column(
             children: <Widget>[
-              new Text('Name:'),
+              new Text('data'),
               new Text('data'),
               new Text('data'),
               new Text('data'),

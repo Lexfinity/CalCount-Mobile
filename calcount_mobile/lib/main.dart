@@ -1,7 +1,7 @@
 import 'package:calcount_mobile/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'dart:convert';
+import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 
 import 'bodyInfoPage.dart';
@@ -32,6 +32,7 @@ class MyApp extends StatelessWidget {
         '/loggedIn': (BuildContext context) => new MainPage(),
         '/bodyInfo': (BuildContext context) => new BodyInfoPage(),
         '/homePage': (BuildContext context) => new MainPage(),
+        '/startPage': (BuildContext context) => new MyHomePage(),
       },
       home: MyHomePage(title: 'CalCount Login'),
     );
@@ -59,6 +60,37 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   TextStyle style = TextStyle(fontFamily: "Montserrat", fontSize: 20.0);
   
+  
+  String password;
+  String username;
+  var firstName;
+  var lastName;
+  var email;
+
+  Future<String> login(String username, String password) async {
+  //  var url = "http://localhost:8080/users/create/" + username +"/"+ firstName +"/" + lastName + "/"+ email + "/" + password;
+   
+     //var uri = createHttpClient();
+      var uri = Uri.http('10.0.2.2:8080','/users/auth/$username/$password');
+
+    //var response = await http.get(Uri.encodeFull(url), headers:{"Accept" : "application/json"});
+    //Navigator.of(context).pushNamed('/bodyInfo');
+    var response = await http.get(uri);
+     if (response.statusCode < 400) {
+    var loginData = convert.jsonDecode(response.body);
+    print(loginData);
+    Navigator.of(context).pushNamed('/loggedIn');
+     }
+     else {
+       print('error');
+
+    }
+  }
+ 
+  
+
+
+  
   @override
   Widget build(BuildContext context) {
 
@@ -68,7 +100,10 @@ class _MyHomePageState extends State<MyHomePage> {
       decoration: InputDecoration(
         contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         hintText: "Username",
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)))
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+        onChanged: (String str) {
+                    username = str;
+                  },
       );
     
     
@@ -80,6 +115,9 @@ class _MyHomePageState extends State<MyHomePage> {
               hintText: "Password",
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+                  onChanged: (String str) {
+                    password = str;
+                  },
         );
 
     final Color ccColor = const Color(0xFFFF6C6C);
@@ -91,7 +129,9 @@ class _MyHomePageState extends State<MyHomePage> {
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: () {},
+        onPressed: () {
+          login(username, password);
+        },
         child: Text("Login",
         textAlign: TextAlign.center,
         style: style.copyWith(
