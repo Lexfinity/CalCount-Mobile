@@ -2,7 +2,7 @@
 import 'package:calcount_mobile/main.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart' as prefix0;
+import 'package:flutter/widgets.dart';
 import 'dart:async';
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;

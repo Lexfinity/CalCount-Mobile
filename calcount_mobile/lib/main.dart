@@ -153,8 +153,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
 
-    final skipButton = Material (
-    elevation: 0,
+    final skipButton = FlatButton (
     child: MaterialButton(
       onPressed: (){
         Navigator.of(context).pushNamed('/loggedIn');
@@ -175,10 +174,11 @@ class _MyHomePageState extends State<MyHomePage> {
               color: Colors.white,
               child: Padding(
                 padding: const EdgeInsets.all(36.0),
-                child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
+                //child: SingleChildScrollView(
+                child: ListView(
+                  padding: EdgeInsets.only(top: 100.0),
+                  //crossAxisAlignment: CrossAxisAlignment.center,
+                  //mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     SizedBox(
                       height: 155.0,
@@ -210,7 +210,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-          ),
+          //),
         );
 
   }

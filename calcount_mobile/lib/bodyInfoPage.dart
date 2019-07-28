@@ -8,8 +8,7 @@ import 'package:http/http.dart' as http;
 
 class BodyInfoPage extends StatefulWidget {
   TextStyle style = TextStyle(fontFamily: "Montserrat", fontSize: 20.0);
-  final Color ccColor = const Color(0xFFFF6C6C);
-
+  
   @override
   _bodyInfoPageState createState() => _bodyInfoPageState();
 }
@@ -26,6 +25,7 @@ class _bodyInfoPageState extends State<BodyInfoPage> {
   var weight;
   var height;
   var sex;
+  
 
   Future<String> updateBodyInfo(String username, int age, String sex, double weight, double height, int physActVal) async {
   //  var url = "http://localhost:8080/users/create/" + username +"/"+ firstName +"/" + lastName + "/"+ email + "/" + password;

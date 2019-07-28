@@ -1,10 +1,10 @@
+import 'package:calcount_mobile/bodyInfoView.dart';
 import 'package:calcount_mobile/homeView.dart';
 import 'package:calcount_mobile/main.dart';
 import 'package:calcount_mobile/historyView.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'bodyInfoView.dart';
 
 class MainPage extends StatefulWidget {
   TextStyle style = TextStyle(fontFamily: "Montserrat", fontSize: 20.0);
@@ -48,7 +48,7 @@ class _MainPageState extends State<MainPage> {
         items: [
            BottomNavigationBarItem(
             icon: Icon(Icons.account_circle),
-            title: Text('Profile')
+            title: Text('Profile'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
